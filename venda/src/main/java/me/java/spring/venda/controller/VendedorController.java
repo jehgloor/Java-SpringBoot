@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,19 +42,20 @@ public class VendedorController {
 		}
 	}
 	
+	@GetMapping("/{id}")
+	public VendedorDto detalhar(@PathVariable Long id) {
+		//@PathVariable -> uma variavel da url.
+		Vendedor vendedor = vendedorRepository.getReferenceById(id);
+		return new VendedorDto(vendedor);
+	}
+	
+	@Transactional
 	@PostMapping
 	public ResponseEntity<VendedorDto> cadastrar(@RequestBody @Valid VendedorForm form, UriComponentsBuilder uriBuilder) {
 		Vendedor vendedor = form.converter();
 		vendedorRepository.save(vendedor);
 		URI uri = uriBuilder.path("/vendedores/{id}").buildAndExpand(vendedor.getId()).toUri();
 		return ResponseEntity.created(uri).body(new VendedorDto(vendedor));
-	}
-	
-	@GetMapping("/{id}")
-	public VendedorDto detalhar(@PathVariable Long id) {
-		//@PathVariable -> uma variavel da url
-		Vendedor vendedor = vendedorRepository.getReferenceById(id);
-		return new VendedorDto(vendedor);
 	}
 	
 	@Transactional
@@ -64,6 +66,13 @@ public class VendedorController {
 		return ResponseEntity.ok(new VendedorDto(vendedor));
 	}
 	
+	@Transactional
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> remover(@PathVariable Long id){
+		//só coloquei o ? para parar o Warning
+		vendedorRepository.deleteById(id);
+		return ResponseEntity.ok().build();
+	}
 	
 	
 }
