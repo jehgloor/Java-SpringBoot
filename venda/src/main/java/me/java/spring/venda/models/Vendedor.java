@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Vendedor {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	private String nome;
 	
 	//@OneToMany(mappedBy = "vendedor")
@@ -19,13 +19,13 @@ public class Vendedor {
 	
 	public Vendedor() {}
 	
-	public Vendedor(int id, String nome) {
+	public Vendedor(Long id, String nome) {
 		this.id = id;
 		this.nome = nome;
 	}
 	
 	
-	public Vendedor(int id, String nome, Venda venda) {
+	public Vendedor(Long id, String nome, Venda venda) {
 		this.id = id;
 		this.nome = nome;
 		//this.venda = venda;
@@ -48,10 +48,10 @@ public class Vendedor {
 		return id == other.id && Objects.equals(nome, other.nome);
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getNome() {
