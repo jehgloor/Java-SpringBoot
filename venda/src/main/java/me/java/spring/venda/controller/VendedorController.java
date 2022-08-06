@@ -1,8 +1,9 @@
 package me.java.spring.venda.controller;
 
 import java.net.URI;
-import java.util.Arrays;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,15 +35,13 @@ public class VendedorController {
 			List<Vendedor> vendedores = vendedorRepository.findByNome(nome);
 			return VendedorDto.converter(vendedores);
 		}
-		
 	}
 	
 	@PostMapping
-	public ResponseEntity<VendedorDto> cadastrar(@RequestBody VendedorForm form, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<VendedorDto> cadastrar(@RequestBody @Valid VendedorForm form, UriComponentsBuilder uriBuilder) {
 		Vendedor vendedor = form.converter();
 		vendedorRepository.save(vendedor);
 		URI uri = uriBuilder.path("/vendedores/{id}").buildAndExpand(vendedor.getId()).toUri();
 		return ResponseEntity.created(uri).body(new VendedorDto(vendedor));
 	}
-
 }
