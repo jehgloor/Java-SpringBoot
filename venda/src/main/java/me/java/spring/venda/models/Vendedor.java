@@ -30,6 +30,10 @@ public class Vendedor {
 		this.nome = nome;
 		//this.venda = venda;
 	}
+	
+	public Vendedor( String nome){
+		this.nome = nome;
+	}
 
 	@Override
 	public int hashCode() {
