@@ -3,6 +3,8 @@ package me.java.spring.venda.config.validacao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -28,13 +30,18 @@ public class ErroValidacaoHandler {
 		List<ErroFormulario> listaErros = new ArrayList<>();
 		List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
 		
-		
 		fieldErrors.forEach(err -> {
 			String mensagem = messageSource.getMessage(err, LocaleContextHolder.getLocale());
 			ErroFormulario erro = new ErroFormulario(err.getField(),mensagem );
 			listaErros.add(erro);
 		});
-		
 		return listaErros;	
+	}
+	
+
+	@ResponseStatus(code = HttpStatus.NOT_FOUND)
+	@ExceptionHandler(EntityNotFoundException.class)
+	public String handle(EntityNotFoundException e) {
+			return "Recurso não encontrado";
 	}
 }
