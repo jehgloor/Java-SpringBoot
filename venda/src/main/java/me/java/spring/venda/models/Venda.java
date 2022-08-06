@@ -2,8 +2,15 @@ package me.java.spring.venda.models;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class Venda {
+	
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private LocalDate dataVenda = LocalDate.now();
 	private double valorVenda;

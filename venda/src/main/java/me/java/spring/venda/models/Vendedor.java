@@ -2,10 +2,20 @@ package me.java.spring.venda.models;
 
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Vendedor {
-	
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nome;
+	
+	//@OneToMany(mappedBy = "vendedor")
+	//private Venda venda;
 	
 	public Vendedor() {}
 	
@@ -14,6 +24,13 @@ public class Vendedor {
 		this.nome = nome;
 	}
 	
+	
+	public Vendedor(int id, String nome, Venda venda) {
+		this.id = id;
+		this.nome = nome;
+		//this.venda = venda;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, nome);
@@ -43,7 +60,15 @@ public class Vendedor {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
+//	public Venda getVenda() {
+//		return venda;
+//	}
+
+//	public void setVenda(Venda venda) {
+//		this.venda = venda;
+//	}
+//	
 	
 	
 	
