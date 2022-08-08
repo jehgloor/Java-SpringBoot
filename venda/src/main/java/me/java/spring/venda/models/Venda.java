@@ -11,13 +11,13 @@ import javax.persistence.Id;
 public class Venda {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	private LocalDate dataVenda = LocalDate.now();
 	private double valorVenda;
 	
 	public Venda() {}
 	
-	public Venda(int id, double valorVenda) {
+	public Venda(Long id, double valorVenda) {
 		this.id = id;
 
 		this.valorVenda = valorVenda;
@@ -44,10 +44,10 @@ public class Venda {
 	}
 
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public LocalDate getDataVenda() {
