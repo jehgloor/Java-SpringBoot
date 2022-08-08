@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -62,5 +63,12 @@ public class VendaController {
 	public ResponseEntity<VendaDto> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizacaoVendaForm form){
 		Venda venda = form.atualizar(id, vendaRepository);
 		return ResponseEntity.ok(new VendaDto(venda));
+	}
+	
+	@Transactional
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> remover(@PathVariable Long id){
+		vendaRepository.deleteById(id);
+		return ResponseEntity.ok().build();
 	}
 }

@@ -12,8 +12,6 @@ public class AtualizacaoVendedorForm {
 	@NotNull @NotEmpty @Length(min = 2, max = 50)
 	private String nome;
 	
-	
-
 	public String getNome() {
 		return nome;
 	}
