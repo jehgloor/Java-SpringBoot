@@ -1,13 +1,12 @@
 package me.java.spring.venda.controller.form;
-
+import javax.validation.constraints.Min;
 import me.java.spring.venda.models.Venda;
-import me.java.spring.venda.models.Vendedor;
 
 public class VendaForm {
+	@Min(0)
+	// ser maior ou igual a 0
 	private double valorVenda;
 	
-	
-
 	public double getValorVenda() {
 		return valorVenda;
 	}
@@ -17,9 +16,7 @@ public class VendaForm {
 	}
 	
 	public Venda converter() {
-		// TODO Auto-generated method stub
 		return new Venda(valorVenda);
 	}
-	
 	
 }

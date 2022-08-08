@@ -15,13 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import me.java.spring.venda.controller.dto.VendaDto;
-import me.java.spring.venda.controller.dto.VendedorDto;
 import me.java.spring.venda.controller.form.VendaForm;
-import me.java.spring.venda.controller.form.VendedorForm;
 import me.java.spring.venda.models.Venda;
-import me.java.spring.venda.models.Vendedor;
 import me.java.spring.venda.repository.VendaRepository;
 
 
@@ -45,7 +41,7 @@ public class VendaController {
 	
 	@Transactional
 	@PostMapping
-	public ResponseEntity<VendaDto> cadastrar(@RequestBody VendaForm form, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<VendaDto> cadastrar(@RequestBody @Valid VendaForm form, UriComponentsBuilder uriBuilder) {
 		Venda venda = form.converter();
 		vendaRepository.save(venda);
 		URI uri = uriBuilder.path("/vendas/{id}").buildAndExpand(venda.getId()).toUri();
