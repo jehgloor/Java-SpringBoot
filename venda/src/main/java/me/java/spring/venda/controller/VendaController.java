@@ -2,6 +2,7 @@ package me.java.spring.venda.controller;
 
 
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -23,6 +24,7 @@ import me.java.spring.venda.controller.form.AtualizacaoVendaForm;
 import me.java.spring.venda.controller.form.VendaForm;
 import me.java.spring.venda.models.Venda;
 import me.java.spring.venda.repository.VendaRepository;
+import me.java.spring.venda.repository.VendedorRepository;
 
 
 @RestController
@@ -31,6 +33,8 @@ public class VendaController {
 	
 	@Autowired
 	private VendaRepository vendaRepository;
+	@Autowired
+	private VendedorRepository vendedorRepository;
 	
 	@GetMapping
 	public List<VendaDto> lista(Double valorVenda){
@@ -52,7 +56,8 @@ public class VendaController {
 	@Transactional
 	@PostMapping
 	public ResponseEntity<VendaDto> cadastrar(@RequestBody @Valid VendaForm form, UriComponentsBuilder uriBuilder) {
-		Venda venda = form.converter();
+		Venda venda = form.converter(vendedorRepository);
+		//venda.setDataVenda(LocalDate.now());
 		vendaRepository.save(venda);
 		URI uri = uriBuilder.path("/vendas/{id}").buildAndExpand(venda.getId()).toUri();
 		return ResponseEntity.created(uri).body(new VendaDto(venda));

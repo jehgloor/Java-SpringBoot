@@ -1,5 +1,7 @@
 package me.java.spring.venda.models;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -14,8 +16,8 @@ public class Vendedor {
 	private Long id;
 	private String nome;
 	
-	//@OneToMany(mappedBy = "vendedor")
-	//private Venda venda;
+	@OneToMany(mappedBy = "vendedor")
+	private List<Venda> venda = new ArrayList<>();
 	
 	public Vendedor() {}
 	
@@ -25,10 +27,10 @@ public class Vendedor {
 	}
 	
 	
-	public Vendedor(Long id, String nome, Venda venda) {
+	public Vendedor(Long id, String nome, List<Venda> venda) {
 		this.id = id;
 		this.nome = nome;
-		//this.venda = venda;
+		this.venda = venda;
 	}
 	
 	public Vendedor( String nome){
@@ -65,16 +67,12 @@ public class Vendedor {
 		this.nome = nome;
 	}
 
-//	public Venda getVenda() {
-//		return venda;
-//	}
+	public List<Venda> getVenda() {
+		return venda;
+	}
 
-//	public void setVenda(Venda venda) {
-//		this.venda = venda;
-//	}
-//	
+	public void setVenda(List<Venda> venda) {
+		this.venda = venda;
+	}
 	
-	
-	
-
 }

@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+
 
 @Entity
 public class Venda {
@@ -14,16 +17,17 @@ public class Venda {
 	private Long id;
 	private LocalDate dataVenda = LocalDate.now();
 	private double valorVenda;
+	@ManyToOne
+	private Vendedor vendedor;
 	
 	public Venda() {}
-	
-	public Venda(Long id, double valorVenda) {
-		this.id = id;
 
-		this.valorVenda = valorVenda;
-	}
 	
 	public Venda(double valorVenda) {
+		this.valorVenda = valorVenda;
+	}
+	public Venda(double valorVenda,Vendedor vendedor) {
+		this.vendedor = vendedor;
 		this.valorVenda = valorVenda;
 	}
 	
@@ -65,5 +69,16 @@ public class Venda {
 	public void setValorVenda(double valorVenda) {
 		this.valorVenda = valorVenda;
 	}
+
+
+	public Vendedor getVendedor() {
+		return vendedor;
+	}
+
+
+	public void setVendedor(Vendedor vendedor) {
+		this.vendedor = vendedor;
+	}
+	
 
 }

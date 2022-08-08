@@ -72,7 +72,5 @@ public class VendedorController {
 		//só coloquei o ? para parar o Warning
 		vendedorRepository.deleteById(id);
 		return ResponseEntity.ok().build();
-	}
-	
-	
+	}	
 }
