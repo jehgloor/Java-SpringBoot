@@ -23,6 +23,9 @@ public class Venda {
 		this.valorVenda = valorVenda;
 	}
 	
+	public Venda(double valorVenda) {
+		this.valorVenda = valorVenda;
+	}
 	
 	@Override
 	public int hashCode() {
