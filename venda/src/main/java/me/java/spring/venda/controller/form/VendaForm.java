@@ -1,6 +1,5 @@
 package me.java.spring.venda.controller.form;
 
-import javax.persistence.EntityNotFoundException;
 import javax.validation.constraints.Min;
 
 import me.java.spring.venda.models.Venda;
@@ -22,15 +21,6 @@ public class VendaForm {
 		this.valorVenda = valorVenda;
 	}
 	
-
-
-//	public String getNomeVendedor() {
-//		return nomeVendedor;
-//	}
-//
-//	public void setNomeVendedor(String nomeVendedor) {
-//		this.nomeVendedor = nomeVendedor;
-//	}
 		public Long getIdVendedor() {
 		return idVendedor;
 	}
@@ -41,11 +31,6 @@ public class VendaForm {
 	
 	public Venda converter(VendedorRepository vendedorRepository) {
 		Vendedor vendedor = vendedorRepository.findById(idVendedor).orElse(null);
-//		Vendedor vendedor = vendedorRepository.findById(idVendedor).orElseThrow( () ->{
-//			return new EntityNotFoundException();
-//		});
 		return new Venda(valorVenda,vendedor);
 	}
-
-
 }

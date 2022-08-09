@@ -2,7 +2,6 @@ package me.java.spring.venda.controller;
 
 
 import java.net.URI;
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -52,7 +51,7 @@ public class VendaController {
 		Venda venda = vendaRepository.getReferenceById(id);
 		return new VendaDto(venda);
 	}
-	
+
 	@Transactional
 	@PostMapping
 	public ResponseEntity<VendaDto> cadastrar(@RequestBody @Valid VendaForm form, UriComponentsBuilder uriBuilder) {

@@ -13,7 +13,6 @@ public class VendaDto {
 	private Long idVendedor;
 	private String nomeVendedor;
 
-	
 	public VendaDto(Venda venda) {
 		this.idVenda = venda.getId();
 		this.valorVenda = venda.getValorVenda();
@@ -22,26 +21,21 @@ public class VendaDto {
 		this.nomeVendedor = venda.getVendedor().getNome();
 	}
 
-
 	public Long getIdVenda() {
 		return idVenda;
 	}
-
 
 	public LocalDate getDataVenda() {
 		return dataVenda;
 	}
 
-
 	public Long getIdVendedor() {
 		return idVendedor;
 	}
 
-
 	public String getNomeVendedor() {
 		return nomeVendedor;
 	}
-
 
 	public double getValorVenda() {
 		return valorVenda;

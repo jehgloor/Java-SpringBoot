@@ -1,8 +1,8 @@
 package me.java.spring.venda.controller;
 
 import java.net.URI;
-import java.util.List;
 
+import java.util.List;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import me.java.spring.venda.controller.dto.VendedorDto;
+import me.java.spring.venda.controller.dto.VendedorVendasDto;
 import me.java.spring.venda.controller.form.AtualizacaoVendedorForm;
 import me.java.spring.venda.controller.form.VendedorForm;
 import me.java.spring.venda.models.Vendedor;
+
 import me.java.spring.venda.repository.VendedorRepository;
 
 @RestController
@@ -42,9 +44,14 @@ public class VendedorController {
 		}
 	}
 	
+	@GetMapping("/qtdvendas")
+	public List<VendedorVendasDto> lista2(){
+			List<Vendedor> vendedores = vendedorRepository.findAll();
+			return VendedorVendasDto.converter(vendedores);
+	}
+
 	@GetMapping("/{id}")
 	public VendedorDto detalhar(@PathVariable Long id) {
-		//@PathVariable -> uma variavel da url.
 		Vendedor vendedor = vendedorRepository.getReferenceById(id);
 		return new VendedorDto(vendedor);
 	}
@@ -69,7 +76,6 @@ public class VendedorController {
 	@Transactional
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> remover(@PathVariable Long id){
-		//só coloquei o ? para parar o Warning
 		vendedorRepository.deleteById(id);
 		return ResponseEntity.ok().build();
 	}	

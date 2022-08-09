@@ -15,22 +15,22 @@ public class Vendedor {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	
+
 	@OneToMany(mappedBy = "vendedor")
-	private List<Venda> venda = new ArrayList<>();
+	private List<Venda> vendas = new ArrayList<>();
 	
 	public Vendedor() {}
 	
-	public Vendedor(Long id, String nome) {
+	public Vendedor(Long id, String nome ) {
 		this.id = id;
 		this.nome = nome;
-	}
 	
+	}
 	
 	public Vendedor(Long id, String nome, List<Venda> venda) {
 		this.id = id;
 		this.nome = nome;
-		this.venda = venda;
+		this.vendas = venda;
 	}
 	
 	public Vendedor( String nome){
@@ -57,22 +57,29 @@ public class Vendedor {
 	public Long getId() {
 		return id;
 	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
 	public String getNome() {
 		return nome;
 	}
+	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	public List<Venda> getVenda() {
-		return venda;
+	public List<Venda> getVendas() {
+		return vendas;
 	}
 
-	public void setVenda(List<Venda> venda) {
-		this.venda = venda;
+	public void setVendas(List<Venda> venda) {
+		this.vendas = venda;
 	}
 	
+	public void adicionarVendaNoVendedor(Venda venda) {
+		venda.setVendedor(this);
+		this.vendas.add(venda);
+	}
 }

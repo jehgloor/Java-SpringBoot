@@ -22,7 +22,6 @@ public class Venda {
 	
 	public Venda() {}
 
-	
 	public Venda(double valorVenda) {
 		this.valorVenda = valorVenda;
 	}
@@ -33,9 +32,8 @@ public class Venda {
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(dataVenda, id, valorVenda);
+		return Objects.hash(dataVenda, id, valorVenda, vendedor);
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -46,10 +44,10 @@ public class Venda {
 		if (getClass() != obj.getClass())
 			return false;
 		Venda other = (Venda) obj;
-		return Objects.equals(dataVenda, other.dataVenda) && id == other.id
-				&& Double.doubleToLongBits(valorVenda) == Double.doubleToLongBits(other.valorVenda);
+		return Objects.equals(dataVenda, other.dataVenda) && Objects.equals(id, other.id)
+				&& Double.doubleToLongBits(valorVenda) == Double.doubleToLongBits(other.valorVenda)
+				&& Objects.equals(vendedor, other.vendedor);
 	}
-
 
 	public Long getId() {
 		return id;
@@ -70,15 +68,11 @@ public class Venda {
 		this.valorVenda = valorVenda;
 	}
 
-
 	public Vendedor getVendedor() {
 		return vendedor;
 	}
 
-
 	public void setVendedor(Vendedor vendedor) {
 		this.vendedor = vendedor;
 	}
-	
-
 }

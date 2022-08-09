@@ -25,5 +25,4 @@ public class AtualizacaoVendedorForm {
 		vendedor.setNome(this.nome);
 		return vendedor;
 	}
-
 }
