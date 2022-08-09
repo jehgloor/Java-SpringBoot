@@ -1,0 +1,52 @@
+Olá boa tarde, segue minhas anotações:
+
+Foi meu primeiro contato com o framework Spring Boot, antes disso 
+estudei na faculdade Java, só que era pra fim de Orientação ao Objeto, 
+então peguei 2 dias pra entender como o Spring funcionava, fiz alguns 
+curso que eu já tenho cadastro, para me familiarizar um pouco (tinha 
+a formação, mas não iria dar tempo de concluir a formação, então fiz 
+um curso inteiro e assisti partes de outros cursos)
+
+Criei as classes de Venda e Vendedor e fiz o CRUD. Para cada uma da 
+tabela, organizei o pacote por Dto e Form e criei as interface 
+Repository para implementar a JPA ( uma forma mais organizada para 
+trazer ou obter o que precisava), adicionei também validações para 
+a inserção de POST nas classes …Form, como por exemplo: no Post de 
+Vendedor o nome não pode ser vazia, não pode ser nulo e ter uma 
+quantidade mínima de caracteres, no Post de venda , validei para 
+que o valor não fosse menor que zero, para excluir um Vendedor, se 
+o mesmo tem uma Venda, essa Venda terá que excluída primeiro, por 
+conta da Foreign Key, configurei também para que se desse algum erro 
+na request viesse o erro mais legíveis dessas validações. Além disso, 
+para o método POST de Venda, esse método tem que ser vinculado a um 
+id de vendedor 
+
+No email você havia pedido para retornar a lista de vendedores com os 
+campos: nome, total de vendas do vendedor e média de vendas diária, 
+conforme o período informado por parâmetro, então tentei primeiro 
+retornar a quantidade de Vendas por Vendedor, porem minha Query não 
+funcionava, fiquei travada nisso mais de 1 dia, adicionei algumas 
+classes para teste, mas no meu caso sempre dava erro na Query, tentei 
+também modificar utilizando dentro da Query o value e o nativeQuery, 
+mas mesmo assim não funcionou, utilizei um método então que por mais 
+que a performance não seja tão rápida quanta a Query, mas pelo menos 
+funcionou o método de trazer a quantidade de Vendas por Vendedor, 
+utilizando o size(), de qualquer forma deixei no código esse método 
+que buscava pela Query e também deixei no código a Query que traz tudo 
+que você havia me pedido, testei direto no Banco e retornou os campos 
+que precisava retornar, acredito que esse problema é na minha validação 
+da Query.
+
+A parte do teste automatizado, eu nunca estudei, tirei um tempo enquanto 
+estava travada com a Query para entender como funcionava e aplicar no 
+projeto, mas sem sucesso também, peço desculpas, se quiserem me dar mais 
+um tempo posso tentar estudar mais e arrumar essas partes que ficaram 
+incompletas, por mais que o meu projeto ficou inacabado fiquei muito 
+satisfeita com o resultado que eu trouxe, pela questão por nunca ter 
+tido contato com Spring Boot. 
+
+Segue meu contato para qualquer dúvida e esclarecimento: 
+Jessica, 
+(43) 99156-1423,
+jessicagloor@hotmail.com
+link para linkedin: https://www.linkedin.com/in/jessica-gloor/

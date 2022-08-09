@@ -11,7 +11,6 @@ public class AtualizacaoVendaForm {
 	public double getValorVenda() {
 		return valorVenda;
 	}
-
 	public void setValorVenda(double valorVenda) {
 		this.valorVenda = valorVenda;
 	}
